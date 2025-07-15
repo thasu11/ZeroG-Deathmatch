@@ -4,6 +4,6 @@
 
 [node name="Arena" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="platform" type="MeshInstance3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 0.5, 0, 0, 0, 20, 0, 0, 0)
 mesh = SubResource("BoxMesh_ug7gw")
