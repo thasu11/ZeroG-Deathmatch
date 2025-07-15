@@ -6,10 +6,13 @@ extends RigidBody3D
 
 var can_boost = true
 
+func _ready():
+	apply_impulse(Vector3.ZERO, Vector3.FORWARD * 50)
+
 func _physics_process(delta):
 	handle_movement(delta)
 	handle_boost()
-	
+
 func handle_movement(delta):
 	var direction = Vector3.ZERO
 	var basis = global_transform.basis
@@ -28,6 +31,7 @@ func handle_movement(delta):
 		direction -= basis.y
 
 	if direction != Vector3.ZERO:
+		print("Moving:", direction)
 		apply_impulse(Vector3.ZERO, direction.normalized() * thrust_force)
 
 func handle_boost():
@@ -39,5 +43,6 @@ func handle_boost():
 
 
 
-func _on_timer_timeout() -> void:
+
+func _on_Timer_timeout() -> void:
 	can_boost = true
