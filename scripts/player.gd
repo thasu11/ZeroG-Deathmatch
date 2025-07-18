@@ -5,6 +5,10 @@ extends CharacterBody3D
 @export var boost_force: float = 10.0
 @export var boost_cooldown: float = 2.0
 
+@export_group("Camera Clamp Limits")
+@export var first_person_pitch_limit: float = PI / 2.2  # Allows more vertical look in first person
+@export var third_person_pitch_limit: float = PI / 3.0  # Tighter vertical look in third person
+
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
 
@@ -39,11 +43,19 @@ func _physics_process(delta: float) -> void:
 	handle_camera_look(delta)
 	handle_movement(delta)
 	handle_boost()
-	move_and_slide()  # Godot 4 uses internal velocity
+	move_and_slide()
 
 func handle_camera_look(delta: float) -> void:
+	var pitch_limit: float
+	if is_first_person:
+		pitch_limit = first_person_pitch_limit
+	else:
+		pitch_limit = third_person_pitch_limit
+
+
 	_camera_pivot.rotation.x -= _camera_input_direction.y * delta  # Inverted Y
-	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, -PI / 3.0, PI / 6.0)
+	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, -pitch_limit, pitch_limit)
+
 	rotation.y -= _camera_input_direction.x * delta
 	_camera_input_direction = Vector2.ZERO
 
