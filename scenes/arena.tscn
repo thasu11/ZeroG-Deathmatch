@@ -18,7 +18,7 @@ tonemap_mode = 2
 [node name="Arena" type="Node3D"]
 
 [node name="player" parent="." instance=ExtResource("7_8vbsj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.439183, 3.79271, 0.535602)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.439183, 1.64832, 0.535602)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a43o1")

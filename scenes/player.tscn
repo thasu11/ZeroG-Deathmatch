@@ -6,9 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fhbv5"]
 
-[node name="player" type="RigidBody3D"]
-gravity_scale = 0.0
-angular_damp = 1.0
+[node name="player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -19,14 +17,16 @@ mesh = SubResource("CapsuleMesh_qm0ti")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_fhbv5")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.873577, 0.486686, 0, -0.486686, 0.873577, 0, 1.20949, 1.79698)
-current = true
-
 [node name="Marker3D" type="Marker3D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="camera_pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.935826, 0.352462, 0, -0.352462, 0.935826, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camera_pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.73335)
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
