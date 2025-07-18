@@ -27,8 +27,13 @@ one_shot = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.935826, 0.352462, 0, -0.352462, 0.935826, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="camerapivot"]
+[node name="ThirdPersonCamera" type="Camera3D" parent="camerapivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.73335)
+
+[node name="FirstPersonCamera" type="Camera3D" parent="camerapivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.914233, -0.40519, 0, 0.40519, 0.914233, 0, 0.276666, 0.07261)
+fov = 70.3125
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
