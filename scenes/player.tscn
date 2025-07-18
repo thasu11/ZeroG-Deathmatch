@@ -23,10 +23,12 @@ shape = SubResource("CapsuleShape3D_fhbv5")
 wait_time = 2.0
 one_shot = true
 
-[node name="camera_pivot" type="Node3D" parent="."]
+[node name="camerapivot" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.935826, 0.352462, 0, -0.352462, 0.935826, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="camera_pivot"]
+[node name="Camera3D" type="Camera3D" parent="camerapivot"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.73335)
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
