@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlx6mimfssqn2"]
+
+[ext_resource type="Script" uid="uid://5o1sble4ft55" path="res://scripts/target.gd" id="1_b5a2r"]
+[ext_resource type="ArrayMesh" uid="uid://n53i1221f4gc" path="res://assets/kenney_blaster-kit/Models/OBJ format/target-large.obj" id="2_nlbrr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rjmvb"]
+points = PackedVector3Array(-0.05, -0.0102459, -0.164063, 0.05, 0.0097384, 0.155936, 0.05, 0.0340997, 0.146168, -0.05, 0.0358768, 0.153785, -0.05, -0.164063, 0.0102459, 0.05, -0.112068, -0.112068, 0.0480565, 0.12477, -0.10917, -0.05, 0.164063, 0.0102459, 0.05, -0.112068, 0.112068, 0.0483074, 0.1202, 0.1202, -0.05, -0.117909, 0.117909, -0.05, 0.117909, -0.117909, 0.0478744, -0.0103489, -0.165712, -0.05, -0.117909, -0.117909, 0.05, -0.155936, -0.0097384, 0.05, 0.155936, 0.0097384, -0.05, 0.117909, 0.117909, 0.0478744, -0.0103489, 0.165712, -0.05, -0.0102459, 0.164063, 0.0483074, 0.1202, -0.1202, -0.05, 0.0102459, -0.164063, -0.05, 0.164063, -0.0102459, -0.05, -0.164063, -0.0102459, 0.05, -0.155936, 0.0097384, 0.05, 0.155936, -0.0097384, 0.05, 0.0097384, -0.155936, -0.05, 0.0102459, 0.164063, 0.0477802, -0.0361641, 0.155017, 0.0477802, -0.0361641, -0.155017, -0.05, -0.128155, -0.0973846, -0.05, -0.128155, 0.0973846, -0.05, -0.0973846, -0.128155)
+
+[node name="target" type="StaticBody3D"]
+script = ExtResource("1_b5a2r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_nlbrr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_rjmvb")

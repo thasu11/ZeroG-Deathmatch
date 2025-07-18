@@ -1,19 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwnn0x2jlknlw"]
+[gd_scene load_steps=5 format=3 uid="uid://bwnn0x2jlknlw"]
 
-[ext_resource type="PackedScene" uid="uid://c5hm5s00tpnlh" path="res://assets/kenney_blaster-kit/Models/GLB format/bullet-foam-tip.glb" id="1_mkf8s"]
 [ext_resource type="Script" uid="uid://criqli37l3ud6" path="res://scripts/bullet.gd" id="1_y25gk"]
+[ext_resource type="ArrayMesh" uid="uid://bv6kawfdo7gls" path="res://assets/kenney_blaster-kit/Models/OBJ format/bullet-foam-tip.obj" id="2_y25gk"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y25gk"]
-radius = 0.00986325
-height = 0.0702294
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y25gk"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l5glv"]
+points = PackedVector3Array(0.00790058, 0.0572072, 0.000877212, -0.00942899, 0.00256991, -0.00171302, -0.00942899, 0.00256991, 0.00171302, 0.00942899, 0.00256991, -0.00171302, -0.00087744, 0.0501899, -0.00965941, -0.00685619, 0.0488503, 0.0077146, 0.00171302, 0.00256991, 0.00942899, -0.00171302, 0.00256991, -0.00942899, -0.00698621, 0.0527042, -0.00698621, 0.00685619, 0.0488503, 0.0077146, 0.00685619, 0.0488503, -0.0077146, -0.00790333, 0.0572167, 0.000877518, 0.00685619, 0.00256822, -0.0077146, -0.00685619, 0.00256822, 0.0077146, -0.000877477, 0.0501908, 0.00965981, 0.0077146, 0.00256822, 0.00685619, 0.00965941, 0.0501899, 0.00087744, 0.00264608, 0.0582209, -0.00705494, -0.00965981, 0.0501908, 0.000877477, -0.00685619, 0.00256822, -0.0077146, -0.00264608, 0.0582209, 0.00705494, 0.00528506, 0.0581831, 0.00616527, -0.0077146, 0.0488503, -0.00685619, -0.00528506, 0.0581831, -0.00616527, 0.00171302, 0.00256991, -0.00942899, 0.0077146, 0.0488503, -0.00685619, -0.0077146, 0.0488503, 0.00685619, -0.00171302, 0.00256991, 0.00942899, 0.00942899, 0.00256991, 0.00171302, 0.00616527, 0.0581831, -0.00528506, 0.00965941, 0.0501899, -0.00087744, 0.0077146, 0.0488503, 0.00685619)
 
 [node name="Bullet" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_y25gk")
 script = ExtResource("1_y25gk")
+speed = 100.0
+damage = 100
 
-[node name="bullet-foam-tip2" parent="." instance=ExtResource("1_mkf8s")]
+[node name="Timer" type="Timer" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0285206, 0)
-shape = SubResource("CapsuleShape3D_y25gk")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("2_y25gk")
 
-[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_l5glv")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

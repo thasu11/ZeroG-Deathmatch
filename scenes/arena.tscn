@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn4juaiksoc7v"]
+[gd_scene load_steps=7 format=3 uid="uid://bn4juaiksoc7v"]
 
 [ext_resource type="PackedScene" uid="uid://uqdtvlt71ql3" path="res://scenes/platform.tscn" id="2_wl4x5"]
+[ext_resource type="PackedScene" uid="uid://dlx6mimfssqn2" path="res://scenes/target.tscn" id="3_olpmc"]
 [ext_resource type="PackedScene" uid="uid://dhqyrwmepnt4y" path="res://scenes/player.tscn" id="7_8vbsj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xsx6r"]
@@ -30,3 +31,15 @@ shadow_enabled = true
 directional_shadow_max_distance = 22.0
 
 [node name="platform" parent="." instance=ExtResource("2_wl4x5")]
+
+[node name="target" parent="." instance=ExtResource("3_olpmc")]
+transform = Transform3D(0.648465, 0, 0.761244, 0, 1, 0, -0.761244, 0, 0.648465, 6.32877, 0.670131, -6.80644)
+
+[node name="target2" parent="." instance=ExtResource("3_olpmc")]
+transform = Transform3D(-0.704659, 0, 0.709546, 0, 1, 0, -0.709546, 0, -0.704659, -0.716168, 0.670131, -6.80644)
+
+[node name="target3" parent="." instance=ExtResource("3_olpmc")]
+transform = Transform3D(0.621845, 0, -0.78314, 0, 1, 0, 0.78314, 0, 0.621845, 6.32877, 0.670131, 3.61591)
+
+[node name="target4" parent="." instance=ExtResource("3_olpmc")]
+transform = Transform3D(0.588876, -0.418739, 0.691291, 0.271538, 0.908107, 0.318763, -0.761244, 0, 0.648465, 4.45571, 5.95009, 0.536119)

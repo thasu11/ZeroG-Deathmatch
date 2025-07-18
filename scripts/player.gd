@@ -16,20 +16,50 @@ var can_boost = true
 var _camera_input_direction := Vector2.ZERO
 var is_first_person: bool = true
 
+var health := 100
+
 @onready var _camera_pivot: Node3D = %camerapivot
 @onready var _first_person_camera: Camera3D = %FirstPersonCamera
 @onready var _third_person_camera: Camera3D = %ThirdPersonCamera
 @onready var _timer: Timer = $Timer
 
-@export var _is_first_person: bool = true
+@export var bullet_scene: PackedScene = preload("res://scenes/bullet.tscn")
+
+@export var fire_point: Node3D
+@export var _is_first_person: bool = true  # Controlled externally (player input toggle)
 
 func _process(delta):
+	update_gun_visibility()
+	handle_shooting()
+
+func update_gun_visibility():
 	if _is_first_person:
-		$GunSocket_FP/GunModel_FP/"blaster-g".visible = true
-		$GunSocket_TP/GunModel_TP/"blaster-g".visible = false
+		$camerapivot/FirstPersonCamera/GunSocket_FP/"blaster-g".visible = true
+		$camerapivot/ThirdPersonCamera/GunSocket_TP/"blaster-g".visible = false
 	else:
-		$GunSocket_FP/GunModel_FP/"blaster-g".visible = false
-		$GunSocket_TP/GunModel_TP/"blaster-g".visible = true
+		$camerapivot/FirstPersonCamera/GunSocket_FP/"blaster-g".visible = false
+		$camerapivot/ThirdPersonCamera/GunSocket_TP/"blaster-g".visible = true
+func fire_bullet():
+	if bullet_scene and fire_point:
+		var bullet = bullet_scene.instantiate()
+		bullet.global_transform = fire_point.global_transform
+		get_tree().current_scene.add_child(bullet)
+		print("Bang!")
+
+
+func handle_shooting():
+	if Input.is_action_just_pressed("shoot"):
+		fire_bullet()
+
+
+func apply_damage(amount: int) -> void:
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+	queue_free() # or play animation or whatever
+
 
 
 
