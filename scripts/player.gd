@@ -21,6 +21,18 @@ var is_first_person: bool = true
 @onready var _third_person_camera: Camera3D = %ThirdPersonCamera
 @onready var _timer: Timer = $Timer
 
+@export var _is_first_person: bool = true
+
+func _process(delta):
+	if _is_first_person:
+		$GunSocket_FP/GunModel_FP/"blaster-g".visible = true
+		$GunSocket_TP/GunModel_TP/"blaster-g".visible = false
+	else:
+		$GunSocket_FP/GunModel_FP/"blaster-g".visible = false
+		$GunSocket_TP/GunModel_TP/"blaster-g".visible = true
+
+
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_timer.timeout.connect(_on_Timer_timeout)

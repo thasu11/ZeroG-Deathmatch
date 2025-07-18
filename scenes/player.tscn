@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhqyrwmepnt4y"]
+[gd_scene load_steps=6 format=3 uid="uid://dhqyrwmepnt4y"]
 
 [ext_resource type="Script" uid="uid://b6cm3qd3h0p3k" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://bqikeu881m0vh" path="res://assets/kenney_blaster-kit/Models/FBX format/blaster-g.fbx" id="2_g2els"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhqgy"]
+albedo_color = Color(0.487756, 1.02879e-06, 3.36915e-07, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qm0ti"]
+material = SubResource("StandardMaterial3D_qhqgy")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fhbv5"]
 
@@ -35,5 +40,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.73335)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.914233, -0.40519, 0, 0.40519, 0.914233, 0, 0.276666, 0.07261)
 fov = 70.3125
+
+[node name="GunSocket_FP" type="Node3D" parent="camerapivot/FirstPersonCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.249677, -0.149387, -0.404441)
+
+[node name="GunModel_FP" parent="camerapivot/FirstPersonCamera/GunSocket_FP" instance=ExtResource("2_g2els")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.0142776, 0, 0)
+
+[node name="Muzzle" type="Marker3D" parent="camerapivot/FirstPersonCamera/GunSocket_FP/GunModel_FP"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, -7.45058e-09, 1, 0, 0.0777847, -0.247334)
+
+[node name="GunSocket_TP" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.311679, 0.167426, -0.460043)
+
+[node name="GunModel_TP" parent="GunSocket_TP" instance=ExtResource("2_g2els")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
